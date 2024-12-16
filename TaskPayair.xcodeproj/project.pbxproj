@@ -11,6 +11,11 @@
 		2817F0002D0B5C87001088EF /* TaskPayair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2817EFF52D0B5C87001088EF /* TaskPayair.framework */; };
 		2817F0052D0B5C87001088EF /* TaskPayairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2817F0042D0B5C87001088EF /* TaskPayairTests.swift */; };
 		2817F0062D0B5C87001088EF /* TaskPayair.h in Headers */ = {isa = PBXBuildFile; fileRef = 2817EFF82D0B5C87001088EF /* TaskPayair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		288B81862D10D3B3004587DB /* SDK+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B817A2D10D2B2004587DB /* SDK+Notification.swift */; };
+		288B81872D10D3B9004587DB /* FirebaseTransation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B817D2D10D2B2004587DB /* FirebaseTransation.swift */; };
+		288B81882D10D3B9004587DB /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B817C2D10D2B2004587DB /* FirebaseDatabase.swift */; };
+		288B81892D10D3C0004587DB /* MFPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B817F2D10D2B2004587DB /* MFPayment.swift */; };
+		288B818A2D10D3C0004587DB /* MFPaymentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B81812D10D2B2004587DB /* MFPaymentSDK.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +34,11 @@
 		2817EFF92D0B5C87001088EF /* TaskPayair.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TaskPayair.docc; sourceTree = "<group>"; };
 		2817EFFF2D0B5C87001088EF /* TaskPayairTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskPayairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2817F0042D0B5C87001088EF /* TaskPayairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPayairTests.swift; sourceTree = "<group>"; };
+		288B817A2D10D2B2004587DB /* SDK+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDK+Notification.swift"; sourceTree = "<group>"; };
+		288B817C2D10D2B2004587DB /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
+		288B817D2D10D2B2004587DB /* FirebaseTransation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTransation.swift; sourceTree = "<group>"; };
+		288B817F2D10D2B2004587DB /* MFPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFPayment.swift; sourceTree = "<group>"; };
+		288B81812D10D2B2004587DB /* MFPaymentSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFPaymentSDK.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				2817EFF82D0B5C87001088EF /* TaskPayair.h */,
+				288B81822D10D2B2004587DB /* Core */,
 				2817EFF92D0B5C87001088EF /* TaskPayair.docc */,
 			);
 			path = TaskPayair;
@@ -83,6 +94,50 @@
 				2817F0042D0B5C87001088EF /* TaskPayairTests.swift */,
 			);
 			path = TaskPayairTests;
+			sourceTree = "<group>";
+		};
+		288B817B2D10D2B2004587DB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				288B817A2D10D2B2004587DB /* SDK+Notification.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		288B817E2D10D2B2004587DB /* Fierbase */ = {
+			isa = PBXGroup;
+			children = (
+				288B817C2D10D2B2004587DB /* FirebaseDatabase.swift */,
+				288B817D2D10D2B2004587DB /* FirebaseTransation.swift */,
+			);
+			path = Fierbase;
+			sourceTree = "<group>";
+		};
+		288B81802D10D2B2004587DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				288B817F2D10D2B2004587DB /* MFPayment.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		288B81822D10D2B2004587DB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				288B817B2D10D2B2004587DB /* Extension */,
+				288B817E2D10D2B2004587DB /* Fierbase */,
+				288B81802D10D2B2004587DB /* Model */,
+				288B81812D10D2B2004587DB /* MFPaymentSDK.swift */,
+				288B818B2D10D3C4004587DB /* Resources */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		288B818B2D10D3C4004587DB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2817EFFA2D0B5C87001088EF /* TaskPayair.docc in Sources */,
+				288B81892D10D3C0004587DB /* MFPayment.swift in Sources */,
+				288B818A2D10D3C0004587DB /* MFPaymentSDK.swift in Sources */,
+				288B81862D10D3B3004587DB /* SDK+Notification.swift in Sources */,
+				288B81872D10D3B9004587DB /* FirebaseTransation.swift in Sources */,
+				288B81882D10D3B9004587DB /* FirebaseDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +479,7 @@
 		2817F00D2D0B5C87001088EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48AJ596T66;
@@ -439,6 +500,7 @@
 		2817F00E2D0B5C87001088EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48AJ596T66;

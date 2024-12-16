@@ -10,13 +10,13 @@ public struct FirebaseTransaction: Codable {
     public let amount: Double
     public let date: Date
     
-    public var toMFModel: MFTransation {
-        MFTransation(id: id, amount: amount, date: date)
+    public var toMFModel: MFTransaction {
+        MFTransaction(id: id, amount: amount, date: date)
     }
 }
 
 public extension FirebaseTransaction {
-    public static let sampleData: [FirebaseTransaction] = [
+    static let sampleData: [FirebaseTransaction] = [
         FirebaseTransaction(
             id: "778ce974-fd91-4458-8b70-1e950b1e3127",
             amount: 199.00,

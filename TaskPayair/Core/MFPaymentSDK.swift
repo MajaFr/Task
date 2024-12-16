@@ -12,30 +12,30 @@ import Combine
 // Whether it was successful or not can't be added in the Transaction mosel extension.
 
 public protocol MFPaymentSDKProtocol: AnyObject {
-    public var lastTransactionSubject: PassthroughSubject<MFTransaction, Error> { get set }
-    public func submitPayment()
+    var lastTransactionSubject: PassthroughSubject<MFTransaction, Error> { get set }
+    func submitPayment()
 }
 
 public class MFPaymentSDK: MFPaymentSDKProtocol {
-    public let lastTransactionSubject = PassthroughSubject<MFTransaction, Error>()
+    public var lastTransactionSubject = PassthroughSubject<MFTransaction, Error>()
     
     public static let shared: MFPaymentSDKProtocol = MFPaymentSDK()
-    private init() {}
+    private init() {
+        bind()
+    }
     
     private let networkService: FirebaseDatabase = FirebaseDatabase()
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
-        bind()
-    }
-    
     func bind() {
         NotificationCenter.default
-            .publisher(for: .lastTransactionUpdated)
-            .sink { [weak self] _ in
-                self?.networkService.firebaseFetchTransaction(with: id) { transaction in
+            .publisher(for: .lastTransactionUpdate)
+            .debounce(for: .seconds(1), scheduler: RunLoop.current)
+            .compactMap { $0.userInfo?["transactionID"] as? String }
+            .sink { [weak self] id in
+                self?.networkService.firebaseFetchTransation(with: id) { transaction in
                     if let transaction {
-                        self?.lastTransactionSubject.send(transaction)
+                        self?.lastTransactionSubject.send(transaction.toMFModel)
                     }
                 }
             }
@@ -43,11 +43,12 @@ public class MFPaymentSDK: MFPaymentSDKProtocol {
     }
     
     public func submitPayment() {
-        networkService.submitPayment { [weak self] id in
+        networkService.submitPayment { id in
             //After a successful or unsuccessful payment we get notifications, it could also be from firebase, let's say it works like silentPush, or websocket
             NotificationCenter.default.post(
-                name: .lastTransactionUpdated,
-                object: nil
+                name: .lastTransactionUpdate,
+                object: nil,
+                userInfo: ["transactionID": id]
             )
         }
     }

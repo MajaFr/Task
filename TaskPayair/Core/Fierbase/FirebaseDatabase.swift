@@ -11,14 +11,16 @@ class FirebaseDatabase {
     private var transaction: [FirebaseTransaction] = FirebaseTransaction.sampleData
     private var submitedNewPayment = false
     
-    func firebaseFetchTransation(with id: String, completion: (FirebaseTransaction?) -> ()) {
-        fetchData {
-            if submitedNewPayment {
-                self.transaction += FirebaseTransaction(
-                    id: id,
+    func firebaseFetchTransation(with id: String, completion: @escaping (FirebaseTransaction?) -> ()) {
+        fetchData { [weak self] in
+            guard let self else { return }
+            if self.submitedNewPayment {
+                self.transaction.append(
+                    FirebaseTransaction(id: id,
                     amount: Double.random(in: 1...1000),
                     date: Date())
-                submitedNewPayment = false
+                )
+                self.submitedNewPayment = false
             }
             // The API returns all transactions but I only take one with a given ID
             completion(transaction.filter { $0.id == id }.first)
@@ -26,14 +28,14 @@ class FirebaseDatabase {
     }
     
     // I start the payment and after it is finished I return her ID
-    func submitPayment(comletion: (String) -> ()) {
+    func submitPayment(comletion: @escaping (String) -> ()) {
         submitedNewPayment = true
         fetchData {
             comletion(UUID().uuidString)
         }
     }
     
-    private func fetchData(completion: () -> ()) {
+    private func fetchData(completion: @escaping () -> ()) {
         // I pretend to download something for example
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             completion()

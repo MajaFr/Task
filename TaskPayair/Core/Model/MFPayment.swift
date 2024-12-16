@@ -8,11 +8,11 @@
 public struct MFTransaction: Codable {
     public let id: String
     public let amount: Double
-    public let data: Data
+    public let date: Date
 }
 
-public extension MFTransaction: Equatable {
+extension MFTransaction: Equatable {
     public static func == (lhs: MFTransaction, rhs: MFTransaction) -> Bool {
-        lhs.id = rhs.id
+        lhs.id == rhs.id
     }
 }
